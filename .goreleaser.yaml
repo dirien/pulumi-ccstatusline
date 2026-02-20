@@ -40,7 +40,7 @@ brews:
     directory: Formula
     homepage: "https://github.com/dirien/pulumi-ccstatusline"
     description: "Pulumi stack info in your Claude Code status line"
-    license: "Apache-2.0"
+    license: "MIT"
 
 checksum:
   name_template: 'checksums.txt'

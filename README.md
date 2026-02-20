@@ -128,4 +128,4 @@ make clean      # Remove build artifacts
 
 ## License
 
-Apache-2.0
+MIT
