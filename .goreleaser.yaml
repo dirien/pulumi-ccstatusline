@@ -34,7 +34,6 @@ brews:
   - repository:
       owner: dirien
       name: homebrew-dirien
-      token: "{{ .Env.TAP_GITHUB_TOKEN }}"
     commit_author:
       name: dirien
       email: info@ediri.de
