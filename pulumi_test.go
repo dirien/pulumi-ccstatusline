@@ -218,7 +218,7 @@ func TestReadCacheCorrupt(t *testing.T) {
 	cwd := t.TempDir()
 	cachePath := cacheFilePath(cwd)
 
-	if err := os.WriteFile(cachePath, []byte("not-json"), 0600); err != nil {
+	if err := os.WriteFile(cachePath, []byte("not-json"), 0o600); err != nil {
 		t.Fatalf("failed to write corrupt cache: %v", err)
 	}
 	t.Cleanup(func() { _ = os.Remove(cachePath) })
@@ -265,7 +265,7 @@ func TestReadProjectName(t *testing.T) {
 
 			dir := t.TempDir()
 			if tt.content != "" {
-				if err := os.WriteFile(filepath.Join(dir, "Pulumi.yaml"), []byte(tt.content), 0600); err != nil {
+				if err := os.WriteFile(filepath.Join(dir, "Pulumi.yaml"), []byte(tt.content), 0o600); err != nil {
 					t.Fatalf("failed to write Pulumi.yaml: %v", err)
 				}
 			}

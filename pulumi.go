@@ -14,12 +14,12 @@ import (
 
 // PulumiData holds the cached Pulumi stack information.
 type PulumiData struct {
-	StackName      string    `json:"stack_name"`
-	ResourceCount  int       `json:"resource_count"`
-	LastStatus     string    `json:"last_status"`
 	LastUpdate     time.Time `json:"last_update"`
 	FetchedAt      time.Time `json:"fetched_at"`
+	StackName      string    `json:"stack_name"`
+	LastStatus     string    `json:"last_status"`
 	WorkspaceMtime int64     `json:"workspace_mtime"`
+	ResourceCount  int       `json:"resource_count"`
 }
 
 const (
@@ -104,7 +104,7 @@ func writeCache(cwd string, data *PulumiData) {
 	if err != nil {
 		return
 	}
-	_ = os.WriteFile(cacheFilePath(cwd), raw, 0600)
+	_ = os.WriteFile(cacheFilePath(cwd), raw, 0o600)
 }
 
 func getPulumiData(ctx context.Context, cwd string) *PulumiData {
@@ -129,11 +129,11 @@ func getPulumiData(ctx context.Context, cwd string) *PulumiData {
 // stackListEntry represents one entry from `pulumi stack ls --json`.
 type stackListEntry struct {
 	Name             string `json:"name"`
-	Current          bool   `json:"current"`
 	LastUpdate       string `json:"lastUpdate"`
-	UpdateInProgress bool   `json:"updateInProgress"`
-	ResourceCount    int    `json:"resourceCount"`
 	URL              string `json:"url"`
+	ResourceCount    int    `json:"resourceCount"`
+	Current          bool   `json:"current"`
+	UpdateInProgress bool   `json:"updateInProgress"`
 }
 
 // fillStackListData uses `pulumi stack ls --json` to get the current stack's

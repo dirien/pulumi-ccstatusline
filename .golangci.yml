@@ -45,44 +45,44 @@ linters:
     - unparam
     - unused
 
-linters-settings:
-  revive:
-    rules:
-      - name: exported
-      - name: var-naming
-      - name: blank-imports
-      - name: context-as-argument
-      - name: error-return
-      - name: error-strings
-      - name: increment-decrement
-      - name: indent-error-flow
-      - name: range
-      - name: receiver-naming
-      - name: time-naming
-      - name: unexported-return
-  govet:
-    enable-all: true
-  gocritic:
-    enabled-tags:
-      - diagnostic
-      - performance
-      - style
-  exhaustive:
-    default-signifies-exhaustive: true
-  nakedret:
-    max-func-lines: 30
-  nestif:
-    min-complexity: 5
-  nolintlint:
-    require-explanation: true
-    require-specific: true
-  errorlint:
-    errorf: true
-    asserts: true
-    comparison: true
-  wrapcheck:
-    ignore-sigs:
-      - fmt.Errorf(
+  settings:
+    revive:
+      rules:
+        - name: exported
+        - name: var-naming
+        - name: blank-imports
+        - name: context-as-argument
+        - name: error-return
+        - name: error-strings
+        - name: increment-decrement
+        - name: indent-error-flow
+        - name: range
+        - name: receiver-naming
+        - name: time-naming
+        - name: unexported-return
+    govet:
+      enable-all: true
+    gocritic:
+      enabled-tags:
+        - diagnostic
+        - performance
+        - style
+    exhaustive:
+      default-signifies-exhaustive: true
+    nakedret:
+      max-func-lines: 30
+    nestif:
+      min-complexity: 5
+    nolintlint:
+      require-explanation: true
+      require-specific: true
+    errorlint:
+      errorf: true
+      asserts: true
+      comparison: true
+    wrapcheck:
+      ignore-sigs:
+        - fmt.Errorf(
 
 formatters:
   enable:
