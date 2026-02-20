@@ -1,12 +1,12 @@
 version: 2
 project_name: pulumi-ccstatusline
 
+snapshot:
+  name_template: '{{ .Tag }}-SNAPSHOT'
+
 before:
   hooks:
     - go mod tidy
-
-archives:
-  - name_template: "{{ .ProjectName }}_{{ .Version }}.{{ .Os }}-{{ .Arch }}"
 
 builds:
   - env:
@@ -18,14 +18,28 @@ builds:
     goarch:
       - amd64
       - arm64
+    ignore:
+      - goos: windows
+        goarch: arm64
+    mod_timestamp: '{{ .CommitTimestamp }}'
+    flags:
+      - -trimpath
+
+archives:
+  - format_overrides:
+      - goos: windows
+        format: zip
 
 brews:
   - repository:
       owner: dirien
       name: homebrew-dirien
-      token: "{{ .Env.TAP_GITHUB_TOKEN }}"
+    commit_author:
+      name: dirien
+      email: info@ediri.de
+    directory: Formula
     homepage: "https://github.com/dirien/pulumi-ccstatusline"
-    description: "A Claude Code status line tool that displays Pulumi stack information"
+    description: "Pulumi stack info in your Claude Code status line"
     license: "Apache-2.0"
 
 checksum:
