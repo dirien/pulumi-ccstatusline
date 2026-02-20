@@ -13,7 +13,8 @@ Stack name is magenta, resources cyan, status green or red, time yellow.
 ### Homebrew
 
 ```bash
-brew install dirien/dirien/pulumi-ccstatusline
+brew tap dirien/homebrew-dirien
+brew install pulumi-ccstatusline
 ```
 
 ### From releases
