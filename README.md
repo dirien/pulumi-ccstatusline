@@ -3,10 +3,10 @@
 Shows Pulumi stack info in your Claude Code status line. If you're in a directory with a `Pulumi.yaml`, you'll see something like:
 
 ```
-☁ dev | 8 resources | ✓ succeeded | 10d ago
+🏷️ my-project | 📚 dev | 8 resources | ✓ succeeded | 10d ago
 ```
 
-Stack name is magenta, resources cyan, status green or red, time yellow.
+Project name in magenta, stack in cyan, resources in cyan, status in green or red, time in yellow.
 
 ## Install
 
@@ -104,7 +104,7 @@ printf "\n"
 
 ## How it works
 
-The binary reads Claude Code's JSON from stdin, pulls out the working directory, and checks for `Pulumi.yaml`. If it finds one, it calls `pulumi stack ls --json` and `pulumi stack history --json` to get the current stack's name, resource count, status, and last update time.
+The binary reads Claude Code's JSON from stdin, pulls out the working directory, and checks for `Pulumi.yaml`. If it finds one, it reads the project name from that file and calls `pulumi stack ls --json` and `pulumi stack history --json` to get the current stack's name, resource count, status, and last update time.
 
 Results are cached for 30 seconds. The cache also watches the Pulumi workspace file in `~/.pulumi/workspaces/`, so switching stacks with `pulumi stack select` or deleting one with `pulumi stack rm` invalidates the cache immediately. No stale data.
 

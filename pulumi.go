@@ -16,6 +16,7 @@ import (
 type PulumiData struct {
 	LastUpdate     time.Time `json:"last_update"`
 	FetchedAt      time.Time `json:"fetched_at"`
+	ProjectName    string    `json:"project_name"`
 	StackName      string    `json:"stack_name"`
 	LastStatus     string    `json:"last_status"`
 	WorkspaceMtime int64     `json:"workspace_mtime"`
@@ -119,6 +120,7 @@ func getPulumiData(ctx context.Context, cwd string) *PulumiData {
 		return nil
 	}
 
+	data.ProjectName = readProjectName(cwd)
 	fillHistoryStatus(ctx, cwd, data)
 
 	data.WorkspaceMtime = mtime

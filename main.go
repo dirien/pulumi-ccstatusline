@@ -52,9 +52,16 @@ func main() {
 
 	sep := colorize(colorDim, " | ")
 
-	parts := []string{colorize(colorMagenta, "☁ "+data.StackName)}
+	parts := []string{}
 
-	parts = append(parts, colorize(colorCyan, fmt.Sprintf("%d resources", data.ResourceCount)))
+	if data.ProjectName != "" {
+		parts = append(parts, colorize(colorMagenta, "🏷️ "+data.ProjectName))
+	}
+
+	parts = append(parts,
+		colorize(colorCyan, "📚 "+data.StackName),
+		colorize(colorCyan, pluralize(data.ResourceCount, "resource")),
+	)
 
 	if data.LastStatus != "" {
 		parts = append(parts, colorizeStatus(data.LastStatus))

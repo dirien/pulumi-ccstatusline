@@ -43,6 +43,13 @@ func formatStatus(status string) string {
 	}
 }
 
+func pluralize(count int, word string) string {
+	if count == 1 {
+		return "1 " + word
+	}
+	return fmt.Sprintf("%d %ss", count, word)
+}
+
 func colorize(color, text string) string {
 	return color + text + colorReset
 }
